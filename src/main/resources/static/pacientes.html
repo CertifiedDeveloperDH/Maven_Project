@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>CRUD pacientes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/paciente/delete_paciente.js"></script>
+    <script type="text/javascript" src="/js/paciente/get_paciente.js"></script>
+    <script type="text/javascript" src="/js/paciente/post_paciente.js"></script>
+    <script type="text/javascript" src="/js/paciente/update_paciente.js"></script>
+    <script type="text/javascript" src="/js/paciente/popular_update_paciente.js"></script>
+    <script type="text/javascript" src="/js/paciente/cerrar_update.js"></script>
+    
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/alta-pacientes.html">Agregar nuevo</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/pacientes/">Todos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/index.html/">Volver a administración principal</a>
+        </li>
+    </ul>
+    <div id="div_paciente_table">
+        <h2>Pacientes</h2>
+        <div class="row col-md-6 table-responsive">
+            <table id="pacienteTable" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Fecha de Ingreso</th>
+                    <th>Id Dirección</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" id = "modify_paciente_table" style="display: none; background-color:#e6fffa; padding:10px; border-radius:3px">
+            <form id="modify_paciente">
+                <div class="form-group">
+                    <label class="control-label" for="id">Id:</label>
+                    <input type="text" class="form-control" id="id"
+                           placeholder="Ingrese el id" name="id" readonly></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre"
+                           placeholder="Ingrese el nombre" name="nombre" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="apellido">Apellido:</label>
+                    <input type="text" class="form-control" id="apellido"
+                           placeholder="Ingrese el apellido" name="apellido" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="dni">DNI:</label>
+                    <input type="text" class="form-control" id="dni"
+                           placeholder="Ingrese el DNI" name="dni" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="fecha_ingreso">Fecha de Ingreso:</label>
+                    <input type="text" class="form-control" id="fecha_ingreso"
+                           placeholder="Ingrese la fecha de ingreso" name="fecha_ingreso" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="id_domicilio">Id Domicilio:</label>
+                    <input type="text" class="form-control" id="id_domicilio"
+                           placeholder="Ingrese el id de domicilio" name="id_domicilio" readonly></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="calle">Calle:</label>
+                    <input type="text" class="form-control" id="calle"
+                           placeholder="Ingrese la calle" name="calle" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="numero">Número:</label>
+                    <input type="text" class="form-control" id="numero"
+                           placeholder="Ingrese el número" name="numero" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="localidad">Localidad:</label>
+                    <input type="text" class="form-control" id="localidad"
+                           placeholder="Ingrese la localidad" name="localidad" required></input>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="provincia">Provincia:</label>
+                    <input type="text" class="form-control" id="provincia"
+                           placeholder="Ingrese la provincia" name="provincia" required></input>
+                </div>
+        
+                
+                <button type="submit" class="btn btn-primary" id="btn-update-paciente">Actualizar</button>
+                <button type="button" class="btn btn-danger" id="btn-cerrar-update-paciente" style="cursor:pointer"
+                onclick="cerrar_update_paciente()">Cerrar</button>
+            </form>
+            <div id="response" style="display:none; margin-top:10px">
+            </div>
+        </div>
+    </div>
+    
+    
+    <hr>
+
+</div>
+
+</body>
+</html>
