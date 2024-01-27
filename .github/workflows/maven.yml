@@ -35,6 +35,10 @@ jobs:
     - run: mvn clean package -D mvn.test.skip
     - name: Publish to Github Pages
     - run: mvn deploy
+      env:
+          GITHUB_USERNAME: x-access-token
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          BUILD_ENV: 'github-actions'
     #- name: Run with Maven
     #- run: java -jar \target\ClinicaOdontologicaB-0.0.1-SNAPSHOT.jar
 
