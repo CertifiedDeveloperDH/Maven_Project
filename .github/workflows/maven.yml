@@ -28,7 +28,7 @@ jobs:
         distribution: 'corretto'
         cache: maven
     - name: Run with Maven
-      run: java -jar target\ClinicaOdontologicaB-0.0.1-SNAPSHOT.jar
+      run: mvnw clean package -D mvn.test.skip
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
