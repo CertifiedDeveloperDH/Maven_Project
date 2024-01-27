@@ -21,10 +21,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        repository: Maven_Project\target
-    - run: cd /home
-    - uses: actions/checkout@v4
     - name: Set up JDK 19
       uses: actions/setup-java@v4
       with:
