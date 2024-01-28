@@ -15,17 +15,20 @@ on:
     branches: [ "main" ]
 
 jobs:
-  delivery:
+  env:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Deploy
-      uses: airuleguy/s3-cp-action@master
-      env:
-        FILE: ./ClinicaOdontologicaB-0.0.1-SNAPSHOT.jar
-        SOURCE_PATH: /
-        DESTINATION_KEY: /back_end_maven/
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
+    - name: Generate Report
+    uses: actions/upload-artifact@v2
+      with:
+        - name: HTML_Report
+        path: cypress/reports/Result
+        retention-days: 5
+    - name: Upload to S3
+    uses: shallwefootball/s3-upload-action@master
+    id: S3
+    with:
+    aws_key_id: ${{secrets.AWS_KEY_ID}}
+    aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+    aws_bucket: bucketName
+    source_dir: cypress/reports/Result
