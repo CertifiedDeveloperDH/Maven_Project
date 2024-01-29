@@ -1,34 +1,15 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+name: Upload to S3
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+on: [pull_request]
 
 jobs:
-  env:
+  upload:
     runs-on: ubuntu-latest
     steps:
-    - name: Generate Report
-    uses: actions/upload-artifact@v2
-      with:
-        - name: HTML_Report
-        path: cypress/reports/Result
-        retention-days: 5
-    - name: Upload to S3
-    uses: shallwefootball/s3-upload-action@master
-    id: S3
-    with:
-    aws_key_id: ${{secrets.AWS_KEY_ID}}
-    aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-    aws_bucket: bucketName
-    source_dir: cypress/reports/Result
+      - uses: actions/checkout@master
+      - uses: shallwefootball/s3-upload-action@master
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'target/ClinicaOdontologicaB-0.0.1-SNAPSHOT.jar'
